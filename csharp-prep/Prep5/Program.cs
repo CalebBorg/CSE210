@@ -7,28 +7,28 @@ class Program
 
 
 
-    static void DisplayWelcome()
+    static void CBdisplayWelcome()
 {
     Console.WriteLine("Welcome to the Program!");
 }
-static string PromptUserName()
+static string CBpromptUserName()
 {
     Console.Write("Please enter your name: ");
     string userName = Console.ReadLine();
     return userName;
 }
-static int PromptUserNumber()
+static int CBpromptUserNumber()
 {
     Console.Write("Please enter your favorite number: ");
     int userNumber = int.Parse(Console.ReadLine());
     return userNumber;
 }
-static int SquareNumber(int number)
+static int CBsquareNumber(int number)
 {
     int numberSquared = number*number;
     return numberSquared;
 }
-static void DisplayResult(string userName, int numberSquared)
+static void CBdisplayResult(string userName, int numberSquared)
 {
     Console.WriteLine($"{userName}, the square of your number is {numberSquared}.");
 }
@@ -42,11 +42,11 @@ static void DisplayResult(string userName, int numberSquared)
 
     static void Main(string[] args)
     {
-        DisplayWelcome();
-        string userName = PromptUserName();
-        int userNumber = PromptUserNumber();
-        int numberSquared = SquareNumber(userNumber);
-        DisplayResult(userName, numberSquared);
+        CBdisplayWelcome();
+        string userName = CBpromptUserName();
+        int userNumber = CBpromptUserNumber();
+        int numberSquared = CBsquareNumber(userNumber);
+        CBdisplayResult(userName, numberSquared);
 
 
     }
