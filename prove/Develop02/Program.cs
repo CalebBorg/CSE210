@@ -8,6 +8,8 @@ class Program
 
         int menuChoice = 0;
         bool fileNameValid = false;
+        DateTime currentDateAndTime = DateTime.Now;
+        string DateTimeString = currentDateAndTime.ToString("MM/dd/yyyy");
 
 //GET A FILENAME FROM THE USER AND ONLY MOVE ON IF IT EXISTS
         while (fileNameValid == false){
@@ -72,7 +74,7 @@ class Program
 //DISPLAY A WRITING PROMPT, TAKE THE USER'S INPUT, THEN STORE IT IN THE LIST OF JOURNAL ENTRIES
             else if (menuChoice == 3){
                 NewEntry.DisplayPrompt(NewEntry._randomNumber, NewEntry._writingPrompts);
-                NewEntry._newEntry = Console.ReadLine();
+                NewEntry._newEntry = DateTimeString + " " + Console.ReadLine();
                 Journal._journalEntries = NewEntry.StoreEntry(NewEntry._newEntry , Journal._journalEntries);
             }
 //DELETE EVERYTHING IN THE CURRENT FILE AND WRITE OVER IT WITH THE CURRENT SAVED JOURNAL ENTRIES
