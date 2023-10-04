@@ -27,8 +27,9 @@ public static void RefreshFile(string _fileName, List<string> _journalEntries){
     string _fileText = File.ReadAllText($@"C:/Users/Caleb/OneDrive/Documents/1Sophomore Year/CSE210/prove/Develop02/{_fileName}");
     string _entryText = string.Join(Environment.NewLine, _journalEntries.ToArray());
 
-    _fileText = _fileText.Replace($"{_fileText}",$"{_entryText}");
-    File.WriteAllText($@"C:/Users/Caleb/OneDrive/Documents/1Sophomore Year/CSE210/prove/Develop02/{_fileName}", _fileText);
+    
+    
+    File.WriteAllText($@"C:/Users/Caleb/OneDrive/Documents/1Sophomore Year/CSE210/prove/Develop02/{_fileName}", _entryText);
 }
 
 

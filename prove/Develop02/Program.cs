@@ -67,6 +67,7 @@ class Program
             }
 //PRINT OUT EACH JOURNAL ENTRY ON ITS OWN LINE
             else if (menuChoice == 2){
+                Console.WriteLine();
                 foreach (string entry in Journal._journalEntries){
                     Console.WriteLine(entry);
                 }
@@ -74,7 +75,7 @@ class Program
 //DISPLAY A WRITING PROMPT, TAKE THE USER'S INPUT, THEN STORE IT IN THE LIST OF JOURNAL ENTRIES
             else if (menuChoice == 3){
                 NewEntry.DisplayPrompt(NewEntry._randomNumber, NewEntry._writingPrompts);
-                NewEntry._newEntry = DateTimeString + " " + Console.ReadLine();
+                NewEntry._newEntry = DateTimeString + " " + NewEntry._currentPrompt + " - " + Console.ReadLine();
                 Journal._journalEntries = NewEntry.StoreEntry(NewEntry._newEntry , Journal._journalEntries);
             }
 //DELETE EVERYTHING IN THE CURRENT FILE AND WRITE OVER IT WITH THE CURRENT SAVED JOURNAL ENTRIES
