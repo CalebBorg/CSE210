@@ -47,6 +47,10 @@ class Program
                     Console.WriteLine(b.Message);
                 }  
 
+
+//CHECK FOR WHICH OPTION THE USER CHOSE UNLESS THEY CHOSE AN INVALID OPTION, THEN EXECUTE THAT OPTION
+
+
 //CLEAR THE CURRENT SAVED JOURNAL ENTRIES AND OPEN THE NEW FILE
             if (menuChoice == 1){
                 Journal._journalEntries.Clear();
