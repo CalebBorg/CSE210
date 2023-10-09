@@ -4,12 +4,15 @@ class Program
 {
     static void Main(string[] args)
     {
-        while(1 == 1){
             Fraction fraction = new Fraction();
+            Console.WriteLine(fraction.GetFractionString());
+            Console.WriteLine(fraction.GetDecimalValue());
+            fraction.SetTop();
+            Console.WriteLine(fraction.GetFractionString());
+            Console.WriteLine(fraction.GetDecimalValue());
             fraction.SetTop();
             fraction.SetBottom();
             Console.WriteLine(fraction.GetFractionString());
             Console.WriteLine(fraction.GetDecimalValue());
-        }
     }
 }
