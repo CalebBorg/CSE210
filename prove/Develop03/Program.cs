@@ -24,8 +24,8 @@ class Program
         Console.WriteLine();
 
         Console.WriteLine("Input the number of words you want hidden per round:");
-        int numberOfHides = int.Parse(Console.ReadLine());
-        Word1.SetNumberOfHides(numberOfHides);
+        int _numberOfHides = int.Parse(Console.ReadLine());
+        Word1.Set_numberOfHides(_numberOfHides);
         Console.WriteLine();
         Console.WriteLine();
 
@@ -40,7 +40,7 @@ class Program
         string menuChoice;
 
 //AS LONG AS THE USER DOESN'T WANT TO QUIT AND THERE ARE MORE WORDS TO HIDE, KEEP GOING THROUGH THIS LOOP
-            while (Scripture1.GetWordCount() > (numberOfHides*numberOfRounds)){
+            while (Scripture1.GetWordCount() > (_numberOfHides*numberOfRounds)){
                 Console.WriteLine("Type 'quit' to end program. Type anything else to continue");
                 Console.WriteLine();
                 menuChoice = Console.ReadLine();
@@ -54,7 +54,7 @@ class Program
                 Console.WriteLine();
                 Console.WriteLine(Reference1.GetReference());
 //THIS CALLS THE FUNCTION TO HIDE A NUMBER OF WORDS IN THE LIST OF STRINGS
-                Scripture1.SetWordList(Scripture1.HideWords(Word1.GetNumberOfHides()));
+                Scripture1.SetWordList(Scripture1.HideWords(Word1.Get_numberOfHides()));
 //TURNS THE NOW PARTIALLY HIDDEN LIST OF STRINGS BACK INTO A STRING AND PRINTS IT
                 Console.WriteLine(Scripture1.ListToStr(Scripture1.GetWordList()));
                 numberOfRounds++;

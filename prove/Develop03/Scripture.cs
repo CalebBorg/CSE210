@@ -1,27 +1,27 @@
 public class Scripture{
 
-private string scripture;
-private List<string> wordList = new List<string>();
+private string _scripture;
+private List<string> _wordList = new List<string>();
 Word Word1 = new Word();
 
 
 public string GetScripture(){
-    return scripture;
+    return _scripture;
 }
 public void SetScripture(string inputScripture){
-    scripture = inputScripture;
+    _scripture = inputScripture;
 }
 
 public int GetWordCount(){
-    int wordCount = wordList.Count();
+    int wordCount = _wordList.Count();
     return wordCount;
 }
 
 public List<string> GetWordList(){
-    return wordList;
+    return _wordList;
 }
 public void SetWordList(List<string> inputWordList){
-    wordList = inputWordList;
+    _wordList = inputWordList;
 }
 
 //TURNS A LIST OF STRINGS SPLIT BY SPACES BACK INTO A STRING
@@ -39,8 +39,8 @@ public List<string> StrToList(string words){
 }
 
 //CALLS THE FUNCTION TO HIDE WORDS IN THE Word CLASS BASED ON THE NUMBER OF HIDES THE USER CHOSE
-public List<string> HideWords(int numberOfHides){
-    List<string> wordListWithBlanks = Word1.RandomizeBlanks(wordList, numberOfHides);
+public List<string> HideWords(int _numberOfHides){
+    List<string> wordListWithBlanks = Word1.RandomizeBlanks(_wordList, _numberOfHides);
     return wordListWithBlanks;
 }
 

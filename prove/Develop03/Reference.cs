@@ -1,12 +1,12 @@
 public class Reference{
 
-private string reference;
+private string _reference;
 
 public string GetReference(){
-    return reference;
+    return _reference;
 }
 public void SetReference(string inputReference){
-    reference  = inputReference;
+    _reference  = inputReference;
 }
 
 
