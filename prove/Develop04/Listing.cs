@@ -2,8 +2,7 @@ using System.ComponentModel;
 
 public class Listing : Activity{
 
-string _description;
-string _activityName;
+
 List<string> _prompts = new List<string>{
     "Who are people that you appreciate?",
     "What are personal strengths of yours?",
@@ -14,17 +13,20 @@ List<string> _inputs = new List<string>();
 
 public Listing(int duration, int pauseTime) : base(duration, pauseTime){
     _duration = duration;
-    _description = "  ";
     _pauseTime = pauseTime;
-    _activityName = "Breathing";
+    _description = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
+    _activityName = "Listing Activity";
 }
 
-public void DisplayRandomPrompt(){
-    Random random = new Random();
-    int randint = random.Next(0,_prompts.Count());
-    Console.WriteLine(_prompts[randint]);
+public List<string> GetPrompts(){
+    return _prompts;
 }
 
+public void SetInputs(List<string> inputs){
+    _inputs = inputs;
+}
+
+//ASKS THE USER FOR INPUTS. USES DATETIME TO RECORD HOW MUCH TIME HAS PASSED. ALWAYS LETS THE USER FINISH THEIR LAST ENTRY BEFORE ENDING
 public List<string> PromptInputs(int duration){
     DateTime time = DateTime.Now;
     DateTime endTime = time.AddSeconds(duration);
@@ -35,6 +37,11 @@ public List<string> PromptInputs(int duration){
         
     }
     return _inputs;
+}
+
+//COUNTS THE INPUTS
+public void CountInputs(){
+    Console.WriteLine($"You listed {_inputs.Count()} things.");
 }
 
 }

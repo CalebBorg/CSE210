@@ -1,11 +1,29 @@
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
+using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
     static void Main(string[] args)
     {
+        int intPauseTime = 0;
+        bool isNumber = false;
+        while(!isNumber){
+            Console.WriteLine("How many seconds do you need to read 1-3 lines of text? ");
+            string input = Console.ReadLine();
+            isNumber = Int32.TryParse(input, out intPauseTime);
+            if (!isNumber){
+                Console.WriteLine("Invalid input");
+            }
+            else{
+                intPauseTime = int.Parse(input)*1000;
+            }
+        }
+
+
+//CONTINUE AS LONG AS THE USER DOESN'T QUIT
         while(true){
             Console.WriteLine("What activity would you like to do today? ");
             Console.WriteLine("1. Breathing Activity");
@@ -17,66 +35,75 @@ class Program
                 break;
             }
 
-            int duration;
+            int duration = 0;
             int inputInt;
-            bool isNumber = Int32.TryParse(input, out inputInt);
+//CHECK IF THE USER'S INPUT IS A NUMBER, IF IT ISN'T CATCH IT, AND IF IT IS CONTINUE
+            isNumber = Int32.TryParse(input, out inputInt);
             if (isNumber){
+//IF THEY CHOOSE 1, DO THE BREATHING EXERCISE
                 if (inputInt == 1){
-                    int timer = 0;
                     Console.WriteLine("How long do you want to do the activity?");
-                    duration = int.Parse(Console.ReadLine());
-                    Breathing breathing = new Breathing(duration, 5);
-                    breathing.DisplaySummary("Breathing Activity", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
-                    int cycles = 0;
-                    Thread.Sleep(5000);
-                    while(timer < duration){
-                        Console.Clear();
-                        if (cycles%2 > 0){
-                            Console.WriteLine("Breathe Out... ");
+                    isNumber = false;
+                    while(!isNumber){
+                        isNumber = int.TryParse(Console.ReadLine(),out duration);
+                        if(!isNumber){
+                            Console.WriteLine("Invalid Input");
                         }
-                        else {
-                            Console.WriteLine("Breathe In... ");
-                        }
-                        breathing.Countdown(5);
-                        cycles ++;
-                        timer = timer + 5;
                     }
+                    Breathing breathing = new Breathing(duration, intPauseTime);
+                    breathing.DisplaySummary(breathing.GetName(), breathing.GetDescription());
+                    breathing.Pause();
+                    breathing.BreatheInAndOut();
                     breathing.DisplayEnd("Breathing Activity", duration);
-                    Thread.Sleep(5000);
+                    breathing.Pause();
                 }
+//IF THEY CHOOSE 2 DO THE REFLECTION ACTIVITY
                 else if (inputInt == 2){
                     Console.WriteLine("How long do you want to do the activity?");
-                    duration = int.Parse(Console.ReadLine());
-                    Reflection reflection = new Reflection(duration, 5);
-                    reflection.DisplaySummary("Reflection Activity", "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
+                    isNumber = false;
+                    while(!isNumber){
+                        isNumber = int.TryParse(Console.ReadLine(),out duration);
+                        if(!isNumber){
+                            Console.WriteLine("Invalid Input");
+                        }
+                    }
+                    Reflection reflection = new Reflection(duration, intPauseTime);
+                    reflection.DisplaySummary(reflection.GetName(), reflection.GetDescription());
                     Console.WriteLine();
-                    Thread.Sleep(5000);
-                    reflection.DisplayRandomPrompt();
-                    reflection.DisplayRandomQuestion(duration);
-                    reflection.DisplayEnd("Reflection Activity", duration);
-                    Thread.Sleep(5000);
+                    reflection.Pause();
+                    reflection.DisplayRandomPrompt(reflection.GetPrompts());
+                    reflection.Pause();
+                    reflection.DisplayRandomQuestion(reflection.GetDuration());
+                    reflection.DisplayEnd(reflection.GetName(), reflection.GetDuration());
+                    reflection.Pause();
                 }
+//IF THEY CHOOSE 3 DO THE LISTING ACTIVITY
                 else if (inputInt == 3){
                     Console.WriteLine("How long do you want to do the activity?");
-                    duration = int.Parse(Console.ReadLine());
-                    Listing listing = new Listing(duration, 5);
-                    listing.DisplaySummary("Listing Activity", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
-                    Thread.Sleep(5000);
-                    listing.DisplayRandomPrompt();
-                    List<string> inputList = listing.PromptInputs(duration);
-                    Console.WriteLine($"You listed {inputList.Count()} things.");
-                    listing.DisplayEnd("Listing Activity", duration);
-                    Thread.Sleep(5000);
+                    isNumber = false;
+                    while(!isNumber){
+                        isNumber = int.TryParse(Console.ReadLine(),out duration);
+                        if(!isNumber){
+                            Console.WriteLine("Invalid Input");
+                        }
+                    }
+                    Listing listing = new Listing(duration, intPauseTime);
+                    listing.DisplaySummary(listing.GetName(), listing.GetDescription());
+                    listing.Pause();
+                    listing.DisplayRandomPrompt(listing.GetPrompts());
+                    listing.SetInputs(listing.PromptInputs(listing.GetDuration()));
+                    listing.CountInputs();
+                    listing.DisplayEnd(listing.GetName(), listing.GetDuration());
+                    listing.Pause();
 
                 }
+//IF THEY GAVE ANY OTHER INPUT ASK THEM FOR A DIFFERENT INPUT
                 else {
                     Console.WriteLine("Invalid input.");
-                    Thread.Sleep(2000);
                 }
             }
             else {
                 Console.WriteLine("Invalid input.");
-                Thread.Sleep(2000);
             }
         }
     }

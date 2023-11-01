@@ -1,7 +1,6 @@
 public class Reflection : Activity{
 
-string _description;
-string _activityName;
+
 List<string> _questions = new List<string>{
     "Why was this experience meaningful to you?",
     "Have you ever done anything like this before?",
@@ -21,25 +20,25 @@ List<string> _prompts = new List<string>{"Think of a time when you stood up for 
 
 public Reflection(int duration, int pauseTime) : base(duration, pauseTime){
 _duration = duration;
-_description = "  ";
 _pauseTime = pauseTime;
-_activityName = "Breathing";
+_description = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
+_activityName = "Reflection Activity";
 }
 
-public void DisplayRandomPrompt(){
-    Random random = new Random();
-    Console.WriteLine(_prompts[random.Next(0,_prompts.Count())]);
-    Thread.Sleep(5000);
+public List<string> GetPrompts(){
+    return _prompts;
 }
+
 public void DisplayRandomQuestion(int duration){
-    int timer = 5;
+    int timer = _pauseTime/1000;
+    Reflection reflection = new Reflection(_duration, _pauseTime);
     while (timer < duration){
         Random random = new Random();
         Console.Clear();
         Console.WriteLine(_questions[random.Next(0,_questions.Count())]);
-        Thread.Sleep(5000);
+        reflection.Pause();
         Spinner(10);
-        timer = timer + 15;
+        timer = timer + _pauseTime + 10;
     }
     Console.Clear();
 }

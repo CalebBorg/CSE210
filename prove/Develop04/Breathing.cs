@@ -2,16 +2,31 @@ using System.ComponentModel;
 
 public class Breathing : Activity{
 
-string _description;
-protected string _activityName;
 
 
 public Breathing(int duration, int pauseTime) : base(duration, pauseTime){
 _duration = duration;
-_description = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
 _pauseTime = pauseTime;
-_activityName = "Breathing";
+_activityName = "Breathing Activity";
+_description = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
 }
 
+public void BreatheInAndOut(){
+    Breathing breathing = new Breathing(_duration, _pauseTime);
+    int timer = 0;
+    int cycles = 0;
+    while(timer < _duration){
+                        Console.Clear();
+                        if (cycles%2 > 0){
+                            Console.WriteLine("Breathe Out... ");
+                        }
+                        else {
+                            Console.WriteLine("Breathe In... ");
+                        }
+                        breathing.Countdown(5);
+                        cycles ++;
+                        timer = timer + 5;
+                    }
+}
 
 }

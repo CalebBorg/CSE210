@@ -5,21 +5,45 @@ public class Activity{
 
 protected int _duration;
 protected int _pauseTime;
+protected string _description;
+protected string _activityName;
 
 public Activity(int duration, int pauseTime){
     _duration = duration;
     _pauseTime = pauseTime;
+    _activityName = "";
+    _description = "";
 }
 
+public int GetDuration(){
+    return _duration;
+}
 
+public string GetName(){
+    return _activityName;
+}
+
+public string GetDescription(){
+    return _description;
+}
+
+public int GetPauseTime(){
+    return _pauseTime;
+}
 
 public void DisplaySummary(string activityName, string description){
     Console.WriteLine($"You've chosen the {activityName}. {description} ");
 }
 
+public void DisplayRandomPrompt(List<string> prompts){
+    Random random = new Random();
+    Console.WriteLine(prompts[random.Next(0,prompts.Count())]);
+}
 
-public void Pause(int duration){
-    Thread.Sleep(duration);
+
+
+public void Pause(){
+    Thread.Sleep(_pauseTime);
 }
 
 public void DisplayEnd(string activityName, int duration){
