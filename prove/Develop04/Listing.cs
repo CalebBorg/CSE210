@@ -18,6 +18,7 @@ public Listing(int duration, int pauseTime) : base(duration, pauseTime){
     _activityName = "Listing Activity";
 }
 
+//I WANTED TO MAKE GetPrompts() INHERITED FROM Activity BUT I COULDN'T FIGURE OUT HOW TO MAKE IT WORK, SO IT SHOWS UP IN Reflection AND Listing
 public List<string> GetPrompts(){
     return _prompts;
 }

@@ -29,6 +29,7 @@ public List<string> GetPrompts(){
     return _prompts;
 }
 
+//DIPLAYS A RANDOM QUESTION, PAUSES, THEN SHOWS A SPINNER FOR 10 SECONDS AND REPEATES UNTIL THE TIMER HAS BEEN GOING LONGER THAN THE DURATION
 public void DisplayRandomQuestion(int duration){
     int timer = _pauseTime/1000;
     Reflection reflection = new Reflection(_duration, _pauseTime);
