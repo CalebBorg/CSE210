@@ -30,7 +30,7 @@ override public void SetCompletion(){
 
 public override int GetCompletion()
 {
-    return _numberOfItemsCompleted;
+    return _completion;
 }
 
 public override int GetPoints(){

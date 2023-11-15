@@ -30,11 +30,11 @@ public void DisplayGoals(){
         }
         Console.WriteLine("-----------------------------------------------");
         Console.WriteLine();
-        Console.WriteLine($"Points: {_totalPoints}");
-        Console.WriteLine();
 
 
     }
+    Console.WriteLine($"Points: {_totalPoints}");
+    Console.WriteLine();
 }
 
 public List<string> Load(string fileName){

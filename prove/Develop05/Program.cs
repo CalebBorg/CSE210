@@ -10,6 +10,7 @@ class Program
         string fileName;
         bool isPoints;
 
+//PRINTS OUT THE MENU
         Display display = new Display();
         while (action != 6){
             Console.WriteLine("Menu Options:");
@@ -21,6 +22,7 @@ class Program
             Console.WriteLine("     6. Quit");
             input = Console.ReadLine();
 
+//CHECKS IF THE INPUT IS AN INTEGER
             isNumber = Int32.TryParse(input, out action);
             if (!isNumber){
                 Console.WriteLine("Invalid input");
