@@ -7,6 +7,9 @@ class Program
         int action = 0;
         string input;
         bool isNumber;
+        string fileName;
+        bool isPoints;
+
         Display display = new Display();
         while (action != 6){
             Console.WriteLine("Menu Options:");
@@ -43,14 +46,31 @@ class Program
                         Console.WriteLine("How many points per item?");
                         pointsPerItem = int.Parse(Console.ReadLine());
                     }
-                    display.CreateGoal(type, description, points, pointsPerItem, numberOfItems, true);
+                    display.CreateGoal(type, description, points, pointsPerItem, numberOfItems, true, 0);
                     break;
                 case 2:
                     display.DisplayGoals();
                     break;
                 case 3:
+                    Console.WriteLine("What is your file's name? (make sure it's in the same folder as this program)");
+                    fileName = Console.ReadLine();
+                    display.Save(fileName);
                     break;
                 case 4:
+                    Console.WriteLine("What is your file's name? (make sure it's in the same folder as this program)");
+                    fileName = Console.ReadLine();
+                    isPoints = true;
+                    List<string> lines = display.Load(fileName);
+                    foreach (string goal in lines){
+                        if (isPoints){
+                            display.IncreasePoints(int.Parse(lines[0]));
+                            isPoints = false;
+                        }
+                        else{
+                            string[] splitGoal = goal.Split(",");
+                            display.CreateGoal(splitGoal[0].ToString(), splitGoal[1].ToString(), int.Parse(splitGoal[2].ToString()), int.Parse(splitGoal[3].ToString()), int.Parse(splitGoal[4].ToString()), Convert.ToBoolean(splitGoal[5]), int.Parse(splitGoal[6].ToString()));
+                        }
+                    }
                     break;
                 case 5:
                     Console.WriteLine("Which goal number would you like to make a record of?");

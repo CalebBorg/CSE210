@@ -3,15 +3,16 @@ public class Eternal : Goal{
 int _points;
 string _description;
 string _type;
-bool _completion = false;
+int _completion;
 int _numberOfCompletions = 0;
 bool _canBeCompleted;
 
-public Eternal(int points, string description, string type, bool canBeCompleted) : base(points, description, type, canBeCompleted){
+public Eternal(int points, string description, string type, bool canBeCompleted, int completion) : base(points, description, type, canBeCompleted, completion){
     _points = points;
     _description = description;
     _type = type;
     _canBeCompleted = canBeCompleted;
+    _completion = completion;
 }
 
 override public void SetCompletion(){
@@ -40,5 +41,7 @@ override public bool CheckCanBeComplete(){
     }
 }
 
-
+override public int GetPointsPerItem(){
+    return 0;
+}
 }

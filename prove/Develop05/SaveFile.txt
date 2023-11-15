@@ -1,0 +1,3 @@
+6
+simple,ok,1,0,0,False,1
+checklist,ok,5,5,5,True,1

@@ -30,31 +30,47 @@ public void DisplayGoals(){
         }
         Console.WriteLine("-----------------------------------------------");
         Console.WriteLine();
+        Console.WriteLine($"Points: {_totalPoints}");
+        Console.WriteLine();
 
 
     }
 }
 
-public void Load(){
-
+public List<string> Load(string fileName){
+    string directory = $"C:/Users/Caleb/OneDrive/Documents/1Sophomore Year/CSE210/prove/Develop05/{fileName}";
+    List<string> lines = new List<string>();
+    StreamReader saveFile = new StreamReader(directory);
+    string line = saveFile.ReadLine();
+    while(line!=null){
+        lines.Add(line);
+        line = saveFile.ReadLine();
+    }
+    saveFile.Close();
+    return lines;
 }
 
-public void Save(){
-
+public void Save(string fileName){
+    string directory = $"C:/Users/Caleb/OneDrive/Documents/1Sophomore Year/CSE210/prove/Develop05/{fileName}";
+    File.WriteAllText(directory, _totalPoints.ToString() + "\n");
+    foreach(Goal goal in _goals){
+        string formattedGoal = goal.GetGoalType() + "," + goal.GetDescription() + "," + goal.GetPoints() + "," + goal.GetPointsPerItem() + "," + goal.GetNumberOfItems() + "," + goal.CheckCanBeComplete() + "," + goal.GetCompletion() + "\n";
+        File.AppendAllText(directory, formattedGoal);
+    }
 }
 
 
-public void CreateGoal(string type, string description, int points, int pointsPerItem, int numberOfItems, bool canBeCompleted){
+public void CreateGoal(string type, string description, int points, int pointsPerItem, int numberOfItems, bool canBeCompleted, int completion){
     
     if(type == "simple"){
-        _goals.Add(new Simple(points, description, type, canBeCompleted));
-        Console.WriteLine("working");
+        _goals.Add(new Simple(points, description, type, canBeCompleted, completion));
+
     }
     else if(type == "eternal"){
-        _goals.Add(new Eternal(points, description, type, canBeCompleted));
+        _goals.Add(new Eternal(points, description, type, canBeCompleted, completion));
     }
     else{
-        _goals.Add(new Checklist(points, description, type, pointsPerItem, numberOfItems, canBeCompleted));
+        _goals.Add(new Checklist(points, description, type, canBeCompleted, pointsPerItem, numberOfItems, completion));
     }
 }
 

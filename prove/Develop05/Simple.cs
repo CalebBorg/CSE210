@@ -1,16 +1,19 @@
+using System.ComponentModel;
+
 public class Simple : Goal{
 
 int _points;
 string _description;
 string _type;
-int _completion = 0;
+int _completion;
 bool _canBeCompleted;
 
-public Simple(int points, string description, string type, bool canBeCompleted) : base(points, description, type, canBeCompleted){
+public Simple(int points, string description, string type, bool canBeCompleted, int completion) : base(points, description, type, canBeCompleted, completion){
     _points = points;
     _description = description;
     _type = type;
     _canBeCompleted = canBeCompleted;
+    _completion = completion;
 }
 
 override public void SetCompletion(){
@@ -38,6 +41,10 @@ override public bool CheckCanBeComplete(){
     else{
         return false;
     }
+}
+
+override public int GetPointsPerItem(){
+    return 0;
 }
 
 }

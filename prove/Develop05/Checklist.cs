@@ -10,13 +10,14 @@ int _numberOfItemsCompleted = 0;
 int _completion = 0;
 bool _canBeCompleted;
 
-public Checklist(int points, string description, string type, int pointsPerItem, int numberOfItems, bool canBeCompleted) : base(points, description, type, canBeCompleted){
+public Checklist(int points, string description, string type, bool canBeCompleted, int pointsPerItem, int numberOfItems, int completion) : base(points, description, type, canBeCompleted, completion){
     _points = points;
     _description = description;
     _type = type;
     _pointsPerItem = pointsPerItem;
     _numberOfItems = numberOfItems;
     _canBeCompleted = canBeCompleted;
+    _completion = completion;
 }
 
 
@@ -58,5 +59,8 @@ override public bool CheckCanBeComplete(){
     }
 }
 
+override public int GetPointsPerItem(){
+    return _pointsPerItem;
+}
 
 }
