@@ -29,7 +29,9 @@ public string GetGoalType(){
     return _type;
 }
 
-abstract public int GetNumberOfItems();
+virtual public int GetNumberOfItems(){
+    return 0;
+}
 
 
 abstract public int GetPoints();
@@ -37,6 +39,8 @@ abstract public int GetPoints();
 
 abstract public bool CheckCanBeComplete();
 
-abstract public int GetPointsPerItem();
+virtual public int GetPointsPerItem(){
+    return 0;
+}
 
 }
