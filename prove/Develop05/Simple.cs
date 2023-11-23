@@ -29,10 +29,6 @@ public override int GetPoints(){
     return _points;
 }
 
-public override int GetNumberOfItems()
-{
-    return 0;
-}
 
 override public bool CheckCanBeComplete(){
     if (_canBeCompleted){
@@ -43,8 +39,6 @@ override public bool CheckCanBeComplete(){
     }
 }
 
-override public int GetPointsPerItem(){
-    return 0;
-}
+
 
 }
