@@ -74,7 +74,6 @@ public void DisplayBoard(Table table){
     DisplayRoyal(royal10);
     DisplayRoyal(royal11);
     Console.WriteLine();
-    Console.WriteLine();
 
 
 //   Console.WriteLine($"""
@@ -88,6 +87,11 @@ public void DisplayBoard(Table table){
 //""");
 }
 
+public void DisplayDeckContents(Deck deck){
+    foreach (Card card in deck.GetDeckList()){
+        DisplayFodder(card);
+    }
+}
 
 
 }

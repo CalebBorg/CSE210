@@ -26,28 +26,21 @@ public void AddCards(List<Card> cards){
 public Card DrawCard(){
     Card draw = _deckList[0];
     _deckList.Remove(_deckList[0]);
-
-    Display display = new Display();
-    foreach (Card card in _deckList){
-        display.DisplayFodder(card);
-    }
-    Console.WriteLine();
-    
     return draw;
 }
 
-public void Shuffle(){
+public void Shuffle(int deckLength){
     List<int> indexDeck =  new List<int>();
     List<Card> emptyDeck = new List<Card>();
     int counter = 0;
-    for (int i = 0; i < 52; i++){
+    for (int i = 0; i < deckLength; i++){
         indexDeck.Add(i);
     }
-    for (int i = 0; i < 52; i++){
+    for (int i = 0; i < deckLength; i++){
         emptyDeck.Add(new Card("♠",0));
     }
 
-    for (int i = 0; i < 52; i++){
+    for (int i = 0; i < deckLength; i++){
         int randomIndex = random.Next(0,indexDeck.Count());
         emptyDeck[indexDeck[randomIndex]] = _deckList[counter];
         indexDeck.Remove(indexDeck[randomIndex]);
@@ -56,5 +49,8 @@ public void Shuffle(){
     _deckList = emptyDeck;
 }
 
+public List<Card> GetDeckList(){
+    return _deckList;
+}
 
 }

@@ -12,7 +12,7 @@ class Program
     {
         Card draw = new Card("placeholder",1);
         Deck deck = new Deck();
-        deck.Shuffle();
+        deck.Shuffle(deck.GetDeckList().Count());
         Table table = new Table();
         Stack stack0 = new Stack();
         Stack stack1 = new Stack();
@@ -27,12 +27,19 @@ class Program
         Display display = new Display();
         table.InitializeCardStacks(stacks);
         foreach(Stack stack in table.GetStacks()){
-            draw = deck.DrawCard();
-            while(draw.GetValue() > 10){
+            while(true){
                 draw = deck.DrawCard();
+                if (draw.GetValue() > 10){
+                    deck.AddCards(new List<Card>{draw});
+                    Console.WriteLine("Test; pulled royal");
+                }
+                else{
+                    stack.PlaceCard(draw);
+                    break;
+                }
             }
-            stack.PlaceCard(draw);
         }
+        deck.Shuffle(deck.GetDeckList().Count());
         bool pass;
         int score = 0;
         Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -40,9 +47,14 @@ class Program
 
 
         while(true){
-            Console.WriteLine();
-            Console.WriteLine();
+            if(deck.GetDeckList().Count() == 0){
+                break;
+            }
+            //Console.Clear();
+            display.DisplayDeckContents(deck);
+            Console.WriteLine("\x1b[3J");
             table.UpdateBoardState();
+            Console.WriteLine(($"Score: {score}").PadLeft(12));
             display.DisplayBoard(table);
             draw = deck.DrawCard();
             if (draw.GetValue() <= 10){
@@ -84,7 +96,7 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(0,deck,stacks[0],draw);
+                            draw.ConscriptStack(1,deck,stacks[1],draw);
                             table.GetStack(1).PlaceCard(draw);
                             pass = true;
                         }
@@ -99,7 +111,7 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(0,deck,stacks[0],draw);
+                            draw.ConscriptStack(2,deck,stacks[2],draw);
                             table.GetStack(2).PlaceCard(draw);
                             pass = true;
                         }
@@ -114,7 +126,7 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(0,deck,stacks[0],draw);
+                            draw.ConscriptStack(3,deck,stacks[3],draw);
                             table.GetStack(3).PlaceCard(draw);
                             pass = true;
                         }
@@ -129,7 +141,7 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(0,deck,stacks[0],draw);
+                            draw.ConscriptStack(4,deck,stacks[4],draw);
                             table.GetStack(4).PlaceCard(draw);
                             pass = true;
                         }
@@ -144,7 +156,7 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(0,deck,stacks[0],draw);
+                            draw.ConscriptStack(5,deck,stacks[5],draw);
                             table.GetStack(5).PlaceCard(draw);
                             pass = true;
                         }
@@ -159,7 +171,7 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(0,deck,stacks[0],draw);
+                            draw.ConscriptStack(6,deck,stacks[6],draw);
                             table.GetStack(6).PlaceCard(draw);
                             pass = true;
                         }
@@ -174,7 +186,7 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(0,deck,stacks[0],draw);
+                            draw.ConscriptStack(7,deck,stacks[7],draw);
                             table.GetStack(7).PlaceCard(draw);
                             pass = true;
                         }
@@ -189,7 +201,7 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(0,deck,stacks[0],draw);
+                            draw.ConscriptStack(8,deck,stacks[8],draw);
                             table.GetStack(8).PlaceCard(draw);
                             pass = true;
                         }
@@ -241,7 +253,7 @@ class Program
                     bool isInt = int.TryParse(input,out index);
                     while(true){
                         if (!isInt){
-                            Console.WriteLine("invalid input, not an integer");
+                            Console.WriteLine("invalid input, not a valid index");
                         }
                         else{
                             index = int.Parse(input);
@@ -254,7 +266,7 @@ class Program
                             break;
                         }
                         else{
-                            Console.WriteLine("not a valid index");
+                            Console.WriteLine("invalid input, not a valid index");
                         }
                     }
                     break;
@@ -265,9 +277,8 @@ class Program
                 }
             }
             }
-            
-            Console.Clear();
         }
+        Console.WriteLine("OUT OF CARDS     GAME OVER");
     }
 
 
