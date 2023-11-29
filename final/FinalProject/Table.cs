@@ -294,7 +294,7 @@ public List<int> GetOpenCourtPositions(int index){
             if (_royalCourt[3].GetValue() == 0){
                 spaces.Add(3);
             }
-            else{
+            if(spaces.Count() == 0){
                 spaces.Add(12);
             }
             break;
@@ -302,7 +302,7 @@ public List<int> GetOpenCourtPositions(int index){
             if (_royalCourt[1].GetValue() == 0){
                 spaces.Add(1);
             }
-            else{
+            if(spaces.Count() == 0){
                 spaces.Add(12);
             }
             break;
@@ -313,7 +313,7 @@ public List<int> GetOpenCourtPositions(int index){
             if (_royalCourt[4].GetValue() == 0){
                 spaces.Add(4);
             }
-            else{
+            if(spaces.Count() == 0){
                 spaces.Add(12);
             }
             break;
@@ -321,7 +321,7 @@ public List<int> GetOpenCourtPositions(int index){
             if (_royalCourt[5].GetValue() == 0){
                 spaces.Add(5);
             }
-            else{
+            if(spaces.Count() == 0){
                 spaces.Add(12);
             }
             break;
@@ -329,7 +329,7 @@ public List<int> GetOpenCourtPositions(int index){
             if (_royalCourt[6].GetValue() == 0){
                 spaces.Add(6);
             }
-            else{
+            if(spaces.Count() == 0){
                 spaces.Add(12);
             }
             break;
@@ -340,7 +340,7 @@ public List<int> GetOpenCourtPositions(int index){
             if (_royalCourt[9].GetValue() == 0){
                 spaces.Add(9);
             }
-            else{
+            if(spaces.Count() == 0){
                 spaces.Add(12);
             }
             break;
@@ -348,7 +348,7 @@ public List<int> GetOpenCourtPositions(int index){
             if (_royalCourt[10].GetValue() == 0){
                 spaces.Add(10);
             }
-            else{
+            if(spaces.Count() == 0){
                 spaces.Add(12);
             }
             break;
@@ -359,7 +359,7 @@ public List<int> GetOpenCourtPositions(int index){
             if (_royalCourt[11].GetValue() == 0){
                 spaces.Add(11);
             }
-            else{
+            if(spaces.Count() == 0){
                 spaces.Add(12);
             }
             break;

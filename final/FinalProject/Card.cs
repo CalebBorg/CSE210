@@ -25,7 +25,7 @@ public virtual string GetFace(){
     return "fodder";
 }
 
-public virtual void ConscriptStack(int location, Deck deck, Stack stack){
+public virtual void ConscriptStack(int location, Deck deck, Stack stack, Card draw){
 
 }
 
@@ -37,7 +37,7 @@ public virtual void SetArmor(int armorIncrease){
 }
 
 public string GetColor(){
-    if (_suit == "◆" || _suit == "♥"){
+    if (_suit == "♦" || _suit == "♥"){
         return "red";
     }
     else{

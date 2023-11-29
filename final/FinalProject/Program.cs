@@ -12,6 +12,7 @@ class Program
     {
         Card draw = new Card("placeholder",1);
         Deck deck = new Deck();
+        deck.Shuffle();
         Table table = new Table();
         Stack stack0 = new Stack();
         Stack stack1 = new Stack();
@@ -68,8 +69,8 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
+                            draw.ConscriptStack(0,deck,stacks[0],draw);
                             table.GetStack(0).PlaceCard(draw);
-                            draw.ConscriptStack(0,deck,stacks[0]);
                             pass = true;
                         }
                         else{
@@ -83,8 +84,8 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
+                            draw.ConscriptStack(0,deck,stacks[0],draw);
                             table.GetStack(1).PlaceCard(draw);
-                            draw.ConscriptStack(0,deck,stacks[0]);
                             pass = true;
                         }
                         else{
@@ -98,8 +99,8 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
+                            draw.ConscriptStack(0,deck,stacks[0],draw);
                             table.GetStack(2).PlaceCard(draw);
-                            draw.ConscriptStack(0,deck,stacks[0]);
                             pass = true;
                         }
                         else{
@@ -113,8 +114,8 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
+                            draw.ConscriptStack(0,deck,stacks[0],draw);
                             table.GetStack(3).PlaceCard(draw);
-                            draw.ConscriptStack(0,deck,stacks[0]);
                             pass = true;
                         }
                         else{
@@ -128,8 +129,8 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
+                            draw.ConscriptStack(0,deck,stacks[0],draw);
                             table.GetStack(4).PlaceCard(draw);
-                            draw.ConscriptStack(0,deck,stacks[0]);
                             pass = true;
                         }
                         else{
@@ -143,8 +144,8 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
+                            draw.ConscriptStack(0,deck,stacks[0],draw);
                             table.GetStack(5).PlaceCard(draw);
-                            draw.ConscriptStack(0,deck,stacks[0]);
                             pass = true;
                         }
                         else{
@@ -158,8 +159,8 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
+                            draw.ConscriptStack(0,deck,stacks[0],draw);
                             table.GetStack(6).PlaceCard(draw);
-                            draw.ConscriptStack(0,deck,stacks[0]);
                             pass = true;
                         }
                         else{
@@ -173,8 +174,8 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
+                            draw.ConscriptStack(0,deck,stacks[0],draw);
                             table.GetStack(7).PlaceCard(draw);
-                            draw.ConscriptStack(0,deck,stacks[0]);
                             pass = true;
                         }
                         else{
@@ -188,8 +189,8 @@ class Program
                             pass = true;
                         }
                         else if (draw.CheckIfAce()){
+                            draw.ConscriptStack(0,deck,stacks[0],draw);
                             table.GetStack(8).PlaceCard(draw);
-                            draw.ConscriptStack(0,deck,stacks[0]);
                             pass = true;
                         }
                         else{

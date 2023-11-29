@@ -15,5 +15,9 @@ public void PlaceCard(Card card){
     Cards.Add(card);
 }
 
+public void ClearStack(){
+    Cards.Clear();
+}
+
 
 }

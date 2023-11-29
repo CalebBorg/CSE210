@@ -13,7 +13,7 @@ public void DisplayRoyal(Card royal){
         }
     }
     else{
-        Console.Write("           ");
+        Console.Write("            ");
     }
 }
 

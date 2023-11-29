@@ -6,25 +6,54 @@ public class Deck{
 List<Card> _deckList = new List<Card>{
 new Ace("♠",1), new Fodder("♠",2), new Fodder("♠",3), new Fodder("♠",4), new Fodder("♠",5), new Fodder("♠",6), new Fodder("♠",7), new Fodder("♠",8), new Fodder("♠",9), new Fodder("♠",10), new Royal("♠",11,"jack",0), new Royal("♠",12,"queen",0), new Royal("♠",13,"king",0), 
 new Ace("♣",1), new Fodder("♣",2), new Fodder("♣",3), new Fodder("♣",4), new Fodder("♣",5), new Fodder("♣",6), new Fodder("♣",7), new Fodder("♣",8), new Fodder("♣",9), new Fodder("♣",10), new Royal("♣",11,"jack",0), new Royal("♣",12,"queen",0), new Royal("♣",13,"king",0), 
-new Ace("◆",1), new Fodder("◆",2), new Fodder("◆",3), new Fodder("◆",4), new Fodder("◆",5), new Fodder("◆",6), new Fodder("◆",7), new Fodder("◆",8), new Fodder("◆",9), new Fodder("◆",10), new Royal("◆",11,"jack",0), new Royal("◆",12,"queen",0), new Royal("◆",13,"king",0), 
+new Ace("♦",1), new Fodder("♦",2), new Fodder("♦",3), new Fodder("♦",4), new Fodder("♦",5), new Fodder("♦",6), new Fodder("♦",7), new Fodder("♦",8), new Fodder("♦",9), new Fodder("♦",10), new Royal("♦",11,"jack",0), new Royal("♦",12,"queen",0), new Royal("♦",13,"king",0), 
 new Ace("♥",1), new Fodder("♥",2), new Fodder("♥",3), new Fodder("♥",4), new Fodder("♥",5), new Fodder("♥",6), new Fodder("♥",7), new Fodder("♥",8), new Fodder("♥",9), new Fodder("♥",10), new Royal("♥",11,"jack",0), new Royal("♥",12,"queen",0), new Royal("♥",13,"king",0), 
 };
+
 List<Card> _drawnList = new List<Card>();
 Card _currentDraw;
 Random random = new Random();
 
 
 
+public void AddCards(List<Card> cards){
+    foreach (Card card in cards){
+        _deckList.Add(card);
+    }
+}
+
 
 public Card DrawCard(){
-    int randInt = random.Next(0,_deckList.Count());
-    if (_deckList.Count() < 5){
-        Console.WriteLine($"{_deckList.Count()} draws remaining");
+    Card draw = _deckList[0];
+    _deckList.Remove(_deckList[0]);
+
+    Display display = new Display();
+    foreach (Card card in _deckList){
+        display.DisplayFodder(card);
     }
-    Card draw = _deckList[randInt];
-    _deckList.Remove(_deckList[randInt]);
-    _drawnList.Add(draw);
+    Console.WriteLine();
+    
     return draw;
+}
+
+public void Shuffle(){
+    List<int> indexDeck =  new List<int>();
+    List<Card> emptyDeck = new List<Card>();
+    int counter = 0;
+    for (int i = 0; i < 52; i++){
+        indexDeck.Add(i);
+    }
+    for (int i = 0; i < 52; i++){
+        emptyDeck.Add(new Card("♠",0));
+    }
+
+    for (int i = 0; i < 52; i++){
+        int randomIndex = random.Next(0,indexDeck.Count());
+        emptyDeck[indexDeck[randomIndex]] = _deckList[counter];
+        indexDeck.Remove(indexDeck[randomIndex]);
+        counter++;
+    }
+    _deckList = emptyDeck;
 }
 
 
