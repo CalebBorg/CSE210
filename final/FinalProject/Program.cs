@@ -50,8 +50,7 @@ class Program
             if(deck.GetDeckList().Count() == 0){
                 break;
             }
-            //Console.Clear();
-            display.DisplayDeckContents(deck);
+            Console.Clear();
             Console.WriteLine("\x1b[3J");
             table.UpdateBoardState();
             Console.WriteLine(($"Score: {score}").PadLeft(12));
@@ -216,7 +215,7 @@ class Program
                     }
 
 
-
+                table.CannonFire(int.Parse(input)-1,table.GetBoardState(),table.GetRoyalCourt());
                 }
             }
             else{

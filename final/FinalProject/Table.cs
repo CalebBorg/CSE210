@@ -20,6 +20,10 @@ public Card GetRoyal(int location){
     return _royalCourt[location];
 }
 
+public List<Card> GetBoardState(){
+    return _boardState;
+}
+
 public void InitializeCardStacks(List<Stack> stacks){
     foreach(Stack stack in stacks){
         _cardStacks.Add(stack);
@@ -59,34 +63,167 @@ public void PlaceCard(Card draw, int location){
 _cardStacks[location].GetAll().Add(draw);
 }
 
-public void CannonFire(int location){
-    if (location ==1){
-//add cards 2 and 3
-//add cards 4 and 7
-//check for royals
-//check if royal dies
-//remove royal
+public List<int> FindTarget(List<Card> boardState, List<Card> royalCourt, List<int> fodder, List<int> royals, List<int> armor){
+    List<int> hits = new List<int>();
+    if (royals[0] != 0){
+        if (fodder[0] + fodder[1] >= royals[0] + armor[0]){
+            hits.Add(0);
+        }
     }
-    else if (location == 3){
-//add cards 1 and 2
-//add cards 6 and 9
-//check for royals
-//check if royal dies
-//remove royal
+    if (royals[1] != 0){
+        if (boardState[3].GetValue() + boardState[6].GetValue() >= royalCourt[9].GetValue() + royalCourt[9].GetArmor()){
+            hits.Add(1);
+        }
+                
     }
-    else if (location == 7){
-//add cards 8 and 9
-//add cards 1 and 4
-//check for royals
-//check if royal dies
-//remove royal
-    }
-    else if (location == 9){
-//add cards 7 and 8
-//add cards 3 and 5
-//check for royals
-//check if royal dies
-//remove royal
+    return hits;
+}
+
+
+public void CannonFire(int location, List<Card> boardState, List<Card> royalCourt){
+    switch(location){
+        case 0:
+            List<int> fodder0 = new List<int>{boardState[1].GetValue(),boardState[2].GetValue(),boardState[3].GetValue(),boardState[6].GetValue()};
+            List<int> royals0 = new List<int>{royalCourt[4].GetValue(),royalCourt[9].GetValue()};
+            List<int> armor0 = new List<int>{royalCourt[4].GetArmor(),royalCourt[9].GetArmor()};
+            List<int> hits0 = FindTarget(boardState, royalCourt, fodder0, royals0, armor0);
+            if (hits0.Count() > 0){
+                Console.WriteLine($"Cannon Fire!");
+                Thread.Sleep(1000);
+            }
+            if (hits0.Contains(0)){
+                Console.WriteLine($"The {royalCourt[4].GetFace()} of {royalCourt[4].GetSuit()} is Dead!");
+                Thread.Sleep(1000);
+                royalCourt[4] = new Card("placeholder",0);
+            }
+            if (hits0.Contains(1)){
+                Console.WriteLine($"The {royalCourt[9].GetFace()} of {royalCourt[9].GetSuit()} is Dead!");
+                Thread.Sleep(1000);
+                royalCourt[9] = new Card("placeholder",0);
+            }
+            break;
+        case 1:
+            List<int> fodder1 = new List<int>{boardState[4].GetValue(),boardState[7].GetValue()};
+            List<int> royals1 = new List<int>{royalCourt[10].GetValue(),0};
+            List<int> armor1 = new List<int>{royalCourt[10].GetArmor(),0};
+            List<int> hits1 = FindTarget(boardState, royalCourt, fodder1, royals1, armor1);
+            if (hits1.Count() > 0){
+                Console.WriteLine($"Cannon Fire!");
+                Thread.Sleep(1000);
+            }
+            if (hits1.Contains(0)){
+                Console.WriteLine($"The {royalCourt[10].GetFace()} of {royalCourt[10].GetSuit()} is Dead!");
+                Thread.Sleep(1000);
+                royalCourt[10] = new Card("placeholder",0);
+            }
+            break;
+        case 2:
+            List<int> fodder2 = new List<int>{boardState[0].GetValue(),boardState[1].GetValue(),boardState[5].GetValue(),boardState[8].GetValue()};
+            List<int> royals2 = new List<int>{royalCourt[3].GetValue(),royalCourt[11].GetValue()};
+            List<int> armor2 = new List<int>{royalCourt[3].GetArmor(),royalCourt[11].GetArmor()};
+            List<int> hits2 = FindTarget(boardState, royalCourt, fodder2, royals2, armor2);
+            if (hits2.Count() > 0){
+                Console.WriteLine($"Cannon Fire!");
+                Thread.Sleep(1000);
+            }
+            if (hits2.Contains(0)){
+                Console.WriteLine($"The {royalCourt[3].GetFace()} of {royalCourt[3].GetSuit()} is Dead!");
+                Thread.Sleep(1000);
+                royalCourt[3] = new Card("placeholder",0);
+            }
+            if (hits2.Contains(1)){
+                Console.WriteLine($"The {royalCourt[11].GetFace()} of {royalCourt[11].GetSuit()} is Dead!");
+                Thread.Sleep(1000);
+                royalCourt[11] = new Card("placeholder",0);
+            }
+            break;
+        case 3:
+            List<int> fodder3 = new List<int>{boardState[4].GetValue(),boardState[5].GetValue()};
+            List<int> royals3 = new List<int>{royalCourt[6].GetValue(),0};
+            List<int> armor3 = new List<int>{royalCourt[6].GetArmor(),0};
+            List<int> hits3 = FindTarget(boardState, royalCourt, fodder3, royals3, armor3);
+            if (hits3.Count() > 0){
+                Console.WriteLine($"Cannon Fire!");
+                Thread.Sleep(1000);
+            }
+            if (hits3.Contains(0)){
+                Console.WriteLine($"The {royalCourt[6].GetFace()} of {royalCourt[6].GetSuit()} is Dead!");
+                Thread.Sleep(1000);
+                royalCourt[6] = new Card("placeholder",0);
+            }
+            break;
+        case 4:
+            break;
+        case 5:
+            List<int> fodder5 = new List<int>{boardState[3].GetValue(),boardState[4].GetValue()};
+            List<int> royals5 = new List<int>{royalCourt[5].GetValue(),0};
+            List<int> armor5 = new List<int>{royalCourt[5].GetArmor(),0};
+            List<int> hits5 = FindTarget(boardState, royalCourt, fodder5, royals5, armor5);
+            if (hits5.Count() > 0){
+                Console.WriteLine($"Cannon Fire!");
+                Thread.Sleep(1000);
+            }
+            if (hits5.Contains(0)){
+                Console.WriteLine($"The {royalCourt[5].GetFace()} of {royalCourt[5].GetSuit()} is Dead!");
+                Thread.Sleep(1000);
+                royalCourt[5] = new Card("placeholder",0);
+            }
+            break;
+        case 6:
+            List<int> fodder6 = new List<int>{boardState[3].GetValue(),boardState[0].GetValue(),boardState[7].GetValue(),boardState[8].GetValue()};
+            List<int> royals6 = new List<int>{royalCourt[0].GetValue(),royalCourt[8].GetValue()};
+            List<int> armor6 = new List<int>{royalCourt[0].GetArmor(),royalCourt[8].GetArmor()};
+            List<int> hits6 = FindTarget(boardState, royalCourt, fodder6, royals6, armor6);
+            if (hits6.Count() > 0){
+                Console.WriteLine($"Cannon Fire!");
+                Thread.Sleep(1000);
+            }
+            if (hits6.Contains(0)){
+                Console.WriteLine($"The {royalCourt[0].GetFace()} of {royalCourt[0].GetSuit()} is Dead!");
+                Thread.Sleep(1000);
+                royalCourt[0] = new Card("placeholder",0);
+            }
+            if (hits6.Contains(1)){
+                Console.WriteLine($"The {royalCourt[8].GetFace()} of {royalCourt[8].GetSuit()} is Dead!");
+                Thread.Sleep(1000);
+                royalCourt[8] = new Card("placeholder",0);
+            }
+            break;
+        case 7:
+            List<int> fodder7 = new List<int>{boardState[1].GetValue(),boardState[4].GetValue()};
+            List<int> royals7 = new List<int>{royalCourt[1].GetValue(),0};
+            List<int> armor7 = new List<int>{royalCourt[1].GetArmor(),0};
+            List<int> hits7 = FindTarget(boardState, royalCourt, fodder7, royals7, armor7);
+            if (hits7.Count() > 0){
+                Console.WriteLine($"Cannon Fire!");
+                Thread.Sleep(1000);
+            }
+            if (hits7.Contains(0)){
+                Console.WriteLine($"The {royalCourt[1].GetFace()} of {royalCourt[1].GetSuit()} is Dead!");
+                Thread.Sleep(1000);
+                royalCourt[1] = new Card("placeholder",0);
+            }
+            break;
+        case 8:
+            List<int> fodder8 = new List<int>{boardState[2].GetValue(),boardState[5].GetValue(),boardState[6].GetValue(),boardState[7].GetValue()};
+            List<int> royals8 = new List<int>{royalCourt[2].GetValue(),royalCourt[7].GetValue()};
+            List<int> armor8 = new List<int>{royalCourt[2].GetArmor(),royalCourt[7].GetArmor()};
+            List<int> hits8 = FindTarget(boardState, royalCourt, fodder8, royals8, armor8);
+            if (hits8.Count() > 0){
+                Console.WriteLine($"Cannon Fire!");
+                Thread.Sleep(1000);
+            }
+            if (hits8.Contains(0)){
+                Console.WriteLine($"The {royalCourt[2].GetFace()} of {royalCourt[2].GetSuit()} is Dead!");
+                Thread.Sleep(1000);
+                royalCourt[2] = new Card("placeholder",0);
+            }
+            if (hits8.Contains(1)){
+                Console.WriteLine($"The {royalCourt[7].GetFace()} of {royalCourt[7].GetSuit()} is Dead!");
+                Thread.Sleep(1000);
+                royalCourt[7] = new Card("placeholder",0);
+            }
+            break;
     }
 }
 
