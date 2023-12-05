@@ -12,29 +12,34 @@ List<Card> _royalCourt = new List<Card>{new Card("placeholder",0), new Card("pla
 List<Card> _dicardPile = new List<Card>();
 List<Card> _killList = new List<Card>();
 
-
+//RETURNS THE TOP CARD OF A STACK USING THE GRID INDEX
 public Card GetFodder(int location){
     return _boardState[location];
 }
 
+//GETS A ROYAL USING ITS ROYAL COURT INDEX
 public Card GetRoyal(int location){
     return _royalCourt[location];
 }
 
+//RETURNS _boardState
 public List<Card> GetBoardState(){
     return _boardState;
 }
 
+//SETS THE _cardStacks LIST TO A LIST OF STACKS
 public void InitializeCardStacks(List<Stack> stacks){
     foreach(Stack stack in stacks){
         _cardStacks.Add(stack);
     }
 }
 
+//UPDATES A SINGLE STACK TO A NEW LIST OF CARDS
 public void UpdateIndividualCardStacks(Stack stack, int coordinate){
     _cardStacks[coordinate] = stack;
 }
 
+//UPDATES THE _boardState LIST TO THE ACTUAL IN GAME BOARDSTATE
 public void UpdateBoardState(){
     _boardState.Clear();
     for (int i = 0 ; i<9 ; i++){
@@ -42,29 +47,24 @@ public void UpdateBoardState(){
     }
 }
 
-public void UpdateRoyalCourt(int location, Card royal){
-
-}
-
-
+//PUTS A PLACEHOLDER CARD IN EACH SPOT OF THE ROYAL COURT
 public void InitializeRoyalCourt(){
     for (int i = 0; i < 13; i++){
         _royalCourt[i] = new Card("placeholder",0);
     }
 }
 
+//RETURNS A STACK OF CARDS USING ITS GRID INDEX
 public Stack GetStack(int location){
     return _cardStacks[location];
 }
 
+//RETURNS ALL STACKS
 public List<Stack> GetStacks(){
     return _cardStacks;
 }
 
-public void PlaceCard(Card draw, int location){
-_cardStacks[location].GetAll().Add(draw);
-}
-
+//CHECKS IF THERE IS A VALID TARGET IN THE PATH OF A CANNON. 
 public List<int> FindTarget(List<Card> boardState, List<Card> royalCourt, List<Card> fodder, List<Card> royals){
     List<int> hits = new List<int>();
     if (royals[0].GetValue() != 0){
@@ -109,7 +109,7 @@ public List<int> FindTarget(List<Card> boardState, List<Card> royalCourt, List<C
     return hits;
 }
 
-
+//FIRES THE CANNON. TAKES IN THE INDEX OF THE TRIGGER CARD PLACED, CHECKS FOR VALID TARGETS, AND IF THERE ARE VALID TARGETS, DESTROYS THEM
 public void CannonFire(int location, List<Card> boardState, List<Card> royalCourt){
     switch(location){
         case 0:
@@ -265,9 +265,9 @@ public void CannonFire(int location, List<Card> boardState, List<Card> royalCour
     }
 }
 
+//THE LOGIC THAT DETERMINES WHERE A ROYAL CARD MUST BE PLACED. ROYAL CARDS MUST FIRST BE PLACED BY HIGHEST CARD OF THE SAME SUIT, IF NONE 
+//EXIST, THEN THEY MUST BE PLACED BY HIGHEST CARD OF THE SAME COLOR. IF NONE EXIST, THEN THEY MUST BE PLACED BY HIGHEST CARD
 public void PlaceRoyal(Card royal){
-    bool suitMatch = false;
-    bool colorMatch = false;
     int index = 0;
     int counter = 0;
     Card highCard = new Card("placeholder",0);
@@ -282,7 +282,6 @@ public void PlaceRoyal(Card royal){
         }
         else if (fodder.GetSuit() == royal.GetSuit()){
             suitMatchList.Add(fodder);
-            suitMatch = true;
         }
     }
 
@@ -294,7 +293,6 @@ public void PlaceRoyal(Card royal){
         }
         else if (nonSuitMatchFodder.GetColor() == royal.GetColor()){
             colorMatchList.Add(nonSuitMatchFodder);
-            colorMatch = true;
         }
     }
 
@@ -459,6 +457,7 @@ public void PlaceRoyal(Card royal){
     }
 }
 
+//RETURNS A LIST OF THE PLACES A ROYAL COULD BE PLACED BASED ON THE GRID INDEX OF THE CARD THAT MOST RESEMBLES IT
 public List<int> GetOpenCourtPositions(int index){
     List<int> spaces = new List<int>();
     switch(index){
@@ -542,14 +541,17 @@ public List<int> GetOpenCourtPositions(int index){
     return spaces;
 }
 
+//RETURNS THE _royalCourt
 public List<Card> GetRoyalCourt(){
     return _royalCourt;
 }
 
+//ADDS ARMOR TO A ROYAL BASED ON THE ARMOR CARD'S VALUE
 public void ArmorRoyal(int index, Card armor){
     _royalCourt[index-1].SetArmor(armor.GetValue());
 }
 
+//RETURNS A LIST OF DEAD ROYALS
 public List<Card> GetKillList(){
     return _killList;
 }

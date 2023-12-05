@@ -80,7 +80,7 @@ class Program
             }
 
             else if (draw.GetValue() >= table.GetStack(0).GetTop().GetValue() || draw.GetValue() >= table.GetStack(1).GetTop().GetValue() || draw.GetValue() >= table.GetStack(2).GetTop().GetValue() || draw.GetValue() >= table.GetStack(3).GetTop().GetValue() || draw.GetValue() >= table.GetStack(4).GetTop().GetValue() || draw.GetValue() >= table.GetStack(5).GetTop().GetValue()|| draw.GetValue() >= table.GetStack(6).GetTop().GetValue() || draw.GetValue() >= table.GetStack(7).GetTop().GetValue() || draw.GetValue() >= table.GetStack(8).GetTop().GetValue() || draw.CheckIfAce()){
-                Console.WriteLine("Where would you like to place this card?");
+                Console.WriteLine("ON which stack would you like to place this card (indexes 1-9, left to right, top to bottom)?");
                 pass = false;
                 while (!pass){
                     string input = Console.ReadLine();
@@ -293,6 +293,10 @@ class Program
         }
         if (table.GetKillList().Count() == 12){
            Console.WriteLine("OUT OF CARDS, ALL ROYALS DEAD     YOU WIN"); 
+           Console.WriteLine($"Score: {score}");
+           if (score == 0){
+            Console.WriteLine("PERFECT GAME");
+           }
         }
         else{
             Console.WriteLine("OUT OF CARDS     GAME OVER");

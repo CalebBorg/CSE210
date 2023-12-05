@@ -2,6 +2,7 @@ using System.Runtime.InteropServices;
 
 public class Display{
 
+//DISPLAYS THE INFORMATION OF A ROYAL CARD, FORMATTED TO ALWAYS BE THE SAME SIZE AS EVERY OTHER CARD
 public void DisplayRoyal(Card royal){
     if (royal.GetValue() != 0){
         if (royal.GetArmor() > 0){
@@ -17,11 +18,12 @@ public void DisplayRoyal(Card royal){
     }
 }
 
+//DISPLAYS THE INFORMATION OF A FODDER CARD, FORMATTED TO ALWAYS BE THE SAME SIZE AS EVERY OTHER CARD
 public void DisplayFodder(Card fodder){
     Console.Write($"[{fodder.GetValue().ToString().PadRight(7)}{fodder.GetSuit().PadLeft(2)} ]");
 }
 
-
+//DISPLAYS THE BOARDSTATE. SHOWS THE TOP CARD OF EVERY STACK AND ALL OF THE ROYAL COURT
 public void DisplayBoard(Table table){
     Card fodder0 = table.GetFodder(0);
     Card fodder1 = table.GetFodder(1);
@@ -74,19 +76,9 @@ public void DisplayBoard(Table table){
     DisplayRoyal(royal10);
     DisplayRoyal(royal11);
     Console.WriteLine();
-
-
-//   Console.WriteLine($"""
-//[{royal0.GetSuit()},{royal0.GetValue()},{royal0.GetFace()},{royal0.GetArmor()}] [{royal1.GetSuit()},{royal1.GetValue()},{royal1.GetFace()},{royal1.GetArmor()}] [{royal2.GetSuit()},{royal2.GetValue()},{royal2.GetFace()},{royal2.GetArmor()}]
-//[{royal3.GetSuit()},{royal3.GetValue()},{royal3.GetFace()},{royal3.GetArmor()}] [{fodder0.GetSuit()},{fodder0.GetValue()}] [{fodder1.GetSuit()},{fodder1.GetValue()}] [{fodder2.GetSuit()},{fodder2.GetValue()}] [{royal4.GetSuit()},{royal4.GetValue()},{royal4.GetFace()},{royal4.GetArmor()}]
-//[{royal5.GetSuit()},{royal5.GetValue()},{royal5.GetFace()},{royal5.GetArmor()}] [{fodder3.GetSuit()},{fodder3.GetValue()}] [{fodder4.GetSuit()},{fodder4.GetValue()}] [{fodder5.GetSuit()},{fodder5.GetValue()}] [{royal6.GetSuit()},{royal6.GetValue()},{royal6.GetFace()},{royal6.GetArmor()}]
-//[{royal7.GetSuit()},{royal7.GetValue()},{royal7.GetFace()},{royal7.GetArmor()}] [{fodder6.GetSuit()},{fodder6.GetValue()}] [{fodder7.GetSuit()},{fodder7.GetValue()}] [{fodder8.GetSuit()},{fodder8.GetValue()}] [{royal8.GetSuit()},{royal8.GetValue()},{royal8.GetFace()},{royal8.GetArmor()}]
-//[{royal9.GetSuit()},{royal9.GetValue()},{royal9.GetFace()},{royal9.GetArmor()}] [{royal10.GetSuit()},{royal10.GetValue()},{royal10.GetFace()},{royal10.GetArmor()}] [{royal11.GetSuit()},{royal11.GetValue()},{royal11.GetFace()},{royal11.GetArmor()}]
-
-
-//""");
 }
 
+//TEST CODE THAT DISPLAYS EVERY CARD LEFT IN THE DECK. NOT IMPLEMENTED IN THE GAME
 public void DisplayDeckContents(Deck deck){
     foreach (Card card in deck.GetDeckList()){
         DisplayFodder(card);

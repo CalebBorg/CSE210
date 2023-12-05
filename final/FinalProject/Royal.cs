@@ -25,7 +25,7 @@ public override int GetArmor(){
     return _armor;
 }
 
-//INCREASE A ROYAL'S ARMOR
+//INCREASE THE ROYAL'S ARMOR
 public override void SetArmor(int armorIncrease){
     _armor = _armor + armorIncrease;
 }
