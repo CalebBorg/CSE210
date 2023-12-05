@@ -25,6 +25,7 @@ public void AddCards(List<Card> cards){
 
 public Card DrawCard(){
     Card draw = _deckList[0];
+    _drawnList.Add(_deckList[0]);
     _deckList.Remove(_deckList[0]);
     return draw;
 }
@@ -51,6 +52,10 @@ public void Shuffle(int deckLength){
 
 public List<Card> GetDeckList(){
     return _deckList;
+}
+
+public List<Card> GetDrawnList(){
+    return _drawnList;
 }
 
 }

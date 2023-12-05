@@ -31,7 +31,6 @@ class Program
                 draw = deck.DrawCard();
                 if (draw.GetValue() > 10){
                     deck.AddCards(new List<Card>{draw});
-                    Console.WriteLine("Test; pulled royal");
                 }
                 else{
                     stack.PlaceCard(draw);
@@ -43,8 +42,20 @@ class Program
         bool pass;
         int score = 0;
         Console.OutputEncoding = System.Text.Encoding.UTF8;
-
-
+        Console.WriteLine(("GRIDCANNON").PadLeft(50));
+        Console.WriteLine();
+        Console.WriteLine("This is a game of card warfare where your battlefield is a 3x3 grid of cards. Your enemy are the royals, which surround the battlefield");
+        Console.WriteLine("Cards may only be placed on cards of lower value.");
+        Console.WriteLine("Royal cards must be placed on the outside of the 3x3 grid, adjacent to the card that closest resembles them");
+        Console.WriteLine("Aces can be placed anywhere, and send the stack they're placed top of on to the bottom of the deck in order");
+        Console.WriteLine("Cards placed on the edge of the grid will trigger cannon fire");
+        Console.WriteLine("Royals across from a cannon trigger will take damage equal to the 2 cards between the trigger and the royal");
+        Console.WriteLine("Jacks can be killed with 11 damage, Queens with 12 damage of their same color, Kings with 13 damage of their same suit");
+        Console.WriteLine("If you run out of cards before the royals all die, you lose");
+        Console.WriteLine("Cards that cannot be placed on the grid either increase your points or increase a royal's armor");
+        Console.WriteLine("The primary goal is to kill all 12 royals, secondary goal is to end with as few points as possible");
+        Console.WriteLine("Press 'enter' to continue");
+        Console.ReadLine();
 
         while(true){
             if(deck.GetDeckList().Count() == 0){
@@ -75,14 +86,15 @@ class Program
                     string input = Console.ReadLine();
                     switch(input){
                         case "1":
-                        if (draw.GetValue() >= table.GetStack(0).GetTop().GetValue()){
-                            table.GetStack(0).PlaceCard(draw);
-                            pass = true;
-                        }
-                        else if (draw.CheckIfAce()){
+                        if (draw.CheckIfAce()){
                             draw.ConscriptStack(0,deck,stacks[0],draw);
                             table.GetStack(0).PlaceCard(draw);
                             pass = true;
+                        }
+                        else if (draw.GetValue() >= table.GetStack(0).GetTop().GetValue()){
+                            table.GetStack(0).PlaceCard(draw);
+                            pass = true;
+                        
                         }
                         else{
                             Console.WriteLine("cannot place card of lower value on card of greater value");
@@ -90,12 +102,12 @@ class Program
                         break;
 
                         case "2":
-                        if (draw.GetValue() >= table.GetStack(1).GetTop().GetValue()){
+                        if (draw.CheckIfAce()){
+                            draw.ConscriptStack(1,deck,stacks[1],draw);
                             table.GetStack(1).PlaceCard(draw);
                             pass = true;
                         }
-                        else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(1,deck,stacks[1],draw);
+                        else if (draw.GetValue() >= table.GetStack(1).GetTop().GetValue()){
                             table.GetStack(1).PlaceCard(draw);
                             pass = true;
                         }
@@ -105,12 +117,12 @@ class Program
                         break;
 
                         case "3":
-                        if (draw.GetValue() >= table.GetStack(2).GetTop().GetValue()){
+                        if (draw.CheckIfAce()){
+                            draw.ConscriptStack(2,deck,stacks[2],draw);
                             table.GetStack(2).PlaceCard(draw);
                             pass = true;
                         }
-                        else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(2,deck,stacks[2],draw);
+                        else if (draw.GetValue() >= table.GetStack(2).GetTop().GetValue()){
                             table.GetStack(2).PlaceCard(draw);
                             pass = true;
                         }
@@ -120,12 +132,12 @@ class Program
                         break;
 
                         case "4":
-                        if (draw.GetValue() >= table.GetStack(3).GetTop().GetValue()){
+                        if (draw.CheckIfAce()){
+                            draw.ConscriptStack(3,deck,stacks[3],draw);
                             table.GetStack(3).PlaceCard(draw);
                             pass = true;
                         }
-                        else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(3,deck,stacks[3],draw);
+                        else if (draw.GetValue() >= table.GetStack(3).GetTop().GetValue()){
                             table.GetStack(3).PlaceCard(draw);
                             pass = true;
                         }
@@ -135,12 +147,12 @@ class Program
                         break;
 
                         case "5":
-                        if (draw.GetValue() >= table.GetStack(4).GetTop().GetValue()){
+                        if (draw.CheckIfAce()){
+                            draw.ConscriptStack(4,deck,stacks[4],draw);
                             table.GetStack(4).PlaceCard(draw);
                             pass = true;
                         }
-                        else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(4,deck,stacks[4],draw);
+                        else if (draw.GetValue() >= table.GetStack(4).GetTop().GetValue()){
                             table.GetStack(4).PlaceCard(draw);
                             pass = true;
                         }
@@ -150,12 +162,12 @@ class Program
                         break;
 
                         case "6":
-                        if (draw.GetValue() >= table.GetStack(5).GetTop().GetValue()){
+                        if (draw.CheckIfAce()){
+                            draw.ConscriptStack(5,deck,stacks[5],draw);
                             table.GetStack(5).PlaceCard(draw);
                             pass = true;
                         }
-                        else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(5,deck,stacks[5],draw);
+                        else if (draw.GetValue() >= table.GetStack(5).GetTop().GetValue()){
                             table.GetStack(5).PlaceCard(draw);
                             pass = true;
                         }
@@ -165,12 +177,12 @@ class Program
                         break;
 
                         case "7":
-                        if (draw.GetValue() >= table.GetStack(6).GetTop().GetValue()){
+                        if (draw.CheckIfAce()){
+                            draw.ConscriptStack(6,deck,stacks[6],draw);
                             table.GetStack(6).PlaceCard(draw);
                             pass = true;
                         }
-                        else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(6,deck,stacks[6],draw);
+                        else if (draw.GetValue() >= table.GetStack(6).GetTop().GetValue()){
                             table.GetStack(6).PlaceCard(draw);
                             pass = true;
                         }
@@ -180,12 +192,12 @@ class Program
                         break;
 
                         case "8":
-                        if (draw.GetValue() >= table.GetStack(7).GetTop().GetValue()){
+                        if (draw.CheckIfAce()){
+                            draw.ConscriptStack(7,deck,stacks[7],draw);
                             table.GetStack(7).PlaceCard(draw);
                             pass = true;
                         }
-                        else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(7,deck,stacks[7],draw);
+                        else if (draw.GetValue() >= table.GetStack(7).GetTop().GetValue()){
                             table.GetStack(7).PlaceCard(draw);
                             pass = true;
                         }
@@ -195,12 +207,12 @@ class Program
                         break;
 
                         case "9":
-                        if (draw.GetValue() >= table.GetStack(8).GetTop().GetValue()){
+                        if (draw.CheckIfAce()){
+                            draw.ConscriptStack(8,deck,stacks[8],draw);
                             table.GetStack(8).PlaceCard(draw);
                             pass = true;
                         }
-                        else if (draw.CheckIfAce()){
-                            draw.ConscriptStack(8,deck,stacks[8],draw);
+                        else if (draw.GetValue() >= table.GetStack(8).GetTop().GetValue()){
                             table.GetStack(8).PlaceCard(draw);
                             pass = true;
                         }
@@ -214,8 +226,10 @@ class Program
                         break;
                     }
 
-
-                table.CannonFire(int.Parse(input)-1,table.GetBoardState(),table.GetRoyalCourt());
+                table.UpdateBoardState();
+                if (pass){
+                    table.CannonFire(int.Parse(input)-1,table.GetBoardState(),table.GetRoyalCourt());
+                }
                 }
             }
             else{
@@ -277,7 +291,12 @@ class Program
             }
             }
         }
-        Console.WriteLine("OUT OF CARDS     GAME OVER");
+        if (table.GetKillList().Count() == 12){
+           Console.WriteLine("OUT OF CARDS, ALL ROYALS DEAD     YOU WIN"); 
+        }
+        else{
+            Console.WriteLine("OUT OF CARDS     GAME OVER");
+        }
     }
 
 

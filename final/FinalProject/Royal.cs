@@ -15,14 +15,17 @@ public Royal(string suit, int value,string face,  int armor) : base(suit, value)
     _armor = armor;
 }
 
+//RETURN THE FACE OF THE ROYAL
 public override string GetFace(){
     return _face;
 }
 
+//RETURN THE ARMOR OF THE ROYAL
 public override int GetArmor(){
     return _armor;
 }
 
+//INCREASE A ROYAL'S ARMOR
 public override void SetArmor(int armorIncrease){
     _armor = _armor + armorIncrease;
 }
