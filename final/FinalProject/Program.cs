@@ -10,6 +10,8 @@ class Program
 
     static void Main(string[] args)
     {
+//THIS FIRST SECTION INITIALIZES ALL THE CLASSES, MAKING A NEW Deck, Table, LIST OF Stacks, AND DRAWING CARDS TO FILL IN THE GRID, IGNORING
+//ROYALS UNTIL THE GRID IS FILLED. IT THEN SHUFFLES THE DECK AND DISPLAYS THE RULES UNTIL THE USER HITS Enter
         Card draw = new Card("placeholder",1);
         Deck deck = new Deck();
         deck.Shuffle(deck.GetDeckList().Count());
@@ -57,7 +59,9 @@ class Program
         Console.WriteLine("Press 'enter' to continue");
         Console.ReadLine();
 
+//THIS IS THE MAIN GAME LOOP, IT GOES UNTIL THE DECK IS EMPTY
         while(true){
+//CHECK IF THE DECK IS EMPTY, IF NOT, UPDATE THE BOARDSTATE, CLEAR THE CONSOLE, THEN DISPLAY THE SCORE THE BOARD AND THE DRAW
             if(deck.GetDeckList().Count() == 0){
                 break;
             }
@@ -74,17 +78,22 @@ class Program
                 display.DisplayRoyal(draw);
             }
             Console.WriteLine();
-            
+
+//IF THE DRAW IS A ROYAL, PLACE IT ACCORDINGLY USING THE PlaceRoyal FUNCTION
             if (draw.GetValue() > 10){
                 table.PlaceRoyal(draw);
             }
 
+//IF THE CARD IS ABLE TO BE PLACED ON THIS BOARD, ASK THE USER WHICH BOARD INDEX THEY WANT TO PLACE IT ON
             else if (draw.GetValue() >= table.GetStack(0).GetTop().GetValue() || draw.GetValue() >= table.GetStack(1).GetTop().GetValue() || draw.GetValue() >= table.GetStack(2).GetTop().GetValue() || draw.GetValue() >= table.GetStack(3).GetTop().GetValue() || draw.GetValue() >= table.GetStack(4).GetTop().GetValue() || draw.GetValue() >= table.GetStack(5).GetTop().GetValue()|| draw.GetValue() >= table.GetStack(6).GetTop().GetValue() || draw.GetValue() >= table.GetStack(7).GetTop().GetValue() || draw.GetValue() >= table.GetStack(8).GetTop().GetValue() || draw.CheckIfAce()){
                 Console.WriteLine("ON which stack would you like to place this card (indexes 1-9, left to right, top to bottom)?");
                 pass = false;
                 while (!pass){
                     string input = Console.ReadLine();
                     switch(input){
+//FOR EACH GRID INDEX, CHECK IF THE CARD IS AN ACE. IF IT IS, IT CAN BE PLACED REGARDLESS OF THE VALUE OF CARD YOU WANT TO PLACE IT ON, AND IT
+//CONSCRIPTS THE STACK UNDERNEATH IT. IF ITS HIGHER VALUE THAN THE CARD YOU WANT TO PLACE IT ON, PLACE IT. OTHERWISE TELL THE PLAYER IT CANNOT
+//BE PLACED WHERE THEY WANT TO
                         case "1":
                         if (draw.CheckIfAce()){
                             draw.ConscriptStack(0,deck,stacks[0],draw);
@@ -225,7 +234,7 @@ class Program
                         Console.WriteLine("invalid input");
                         break;
                     }
-
+//IF THE CARD WAS PLACED PROPERLY, ACTIVATE THE CannonFire FUNCTION
                 table.UpdateBoardState();
                 if (pass){
                     table.CannonFire(int.Parse(input)-1,table.GetBoardState(),table.GetRoyalCourt());
@@ -233,6 +242,7 @@ class Program
                 }
             }
             else{
+//IF THE CARD CANNOT BE PLACED ON THE CURRENT GRID, CHECK IF THERE ARE ANY ROYALS IN THE ROYAL COURT
                 bool occupied = false;
                 Console.WriteLine("cannot place");
                 foreach (Card royal in table.GetRoyalCourt()){
@@ -240,11 +250,12 @@ class Program
                         occupied = true;
                     }
                 }
-
+//IF THERE ARE NO ROYALS, INCREASE THE PLAYER'S SCORE BY THE VALUE OF THE CARD THAT CANNOT BE PLACED
             if (!occupied){
                 score = score + draw.GetValue();
                 Console.WriteLine($"Score increased by {draw.GetValue()}");
             }
+//IF THERE ARE ROYALS, GIVE THE PLAYER THE CHOICE BETWEEN TAKING THE SCORE INCREASE OR GIVING A ROYAL ARMOR
             else{
                 Console.WriteLine("Do you want to take the score increase or increase a royal's armor? Type 1 or 2.");
                 while(true){
@@ -291,6 +302,7 @@ class Program
             }
             }
         }
+//WHEN THE DECK IS EMPTY, CHECK IF EVERY ROYAL IS DEAD. IF THEY ARE, THE PLAYER WINS. IF THEIR SCORE IS ALSO 0, IT'S A PERFECT GAME.
         if (table.GetKillList().Count() == 12){
            Console.WriteLine("OUT OF CARDS, ALL ROYALS DEAD     YOU WIN"); 
            Console.WriteLine($"Score: {score}");
@@ -298,6 +310,7 @@ class Program
             Console.WriteLine("PERFECT GAME");
            }
         }
+//IF THEY RUN OUT OF CARDS AND AT LEASE ONE ROYAL IS STILL ALIVE, ITS GAME OVER, AND THE PLAYER LOSES
         else{
             Console.WriteLine("OUT OF CARDS     GAME OVER");
         }
