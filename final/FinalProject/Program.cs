@@ -44,6 +44,8 @@ class Program
         bool pass;
         int score = 0;
         Console.OutputEncoding = System.Text.Encoding.UTF8;
+        Console.Clear();
+        Console.WriteLine("\x1b[3J");
         Console.WriteLine(("GRIDCANNON").PadLeft(50));
         Console.WriteLine();
         Console.WriteLine("This is a game of card warfare where your battlefield is a 3x3 grid of cards. Your enemy are the royals, which surround the battlefield");
@@ -69,6 +71,7 @@ class Program
             Console.WriteLine("\x1b[3J");
             table.UpdateBoardState();
             Console.WriteLine(($"Score: {score}").PadLeft(12));
+            Console.WriteLine();
             display.DisplayBoard(table);
             draw = deck.DrawCard();
             if (draw.GetValue() <= 10){
